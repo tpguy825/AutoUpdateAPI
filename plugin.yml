@@ -1,20 +1,11 @@
 #name, main, version and api are required
-name: ExamplePlugin
-main: ExamplePlugin\MainClass
-src-namespace-prefix: ExamplePlugin
+name: AutoUpdateAPI
+main: tpguy825\AutoUpdateAPI\Main
+src-namespace-prefix: tpguy825\AutoUpdateAPI
 version: 1.2.0
 api: 4.0.0
 
 load: POSTWORLD
-author: PocketMine Team
-description: Example plugin showing the new API
-website: https://github.com/pmmp/ExamplePlugin
-commands:
-  example:
-    description: Example command
-    usage: "/example"
-    permission: exampleplugin.command.example
-permissions:
-  exampleplugin.command.example:
-    description: "Allows the user to run the example command"
-    default: true
+author: tpguy825
+description: API to help automatically keep your plugins up to date!
+website: https://github.com/tpguy825/autoupdateapi
