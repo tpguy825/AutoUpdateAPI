@@ -1,11 +1,11 @@
 #name, main, version and api are required
-name: AutoUpdateAPI
-main: tpguy825\AutoUpdateAPI\Main
-src-namespace-prefix: tpguy825\AutoUpdateAPI
+name: AutoPluginUpdater
+main: tpguy825\AutoPluginUpdater\Main
+src-namespace-prefix: tpguy825\AutoPluginUpdater
 version: 1.2.0
 api: 4.0.0
 
 load: POSTWORLD
 author: tpguy825
 description: API to help automatically keep your plugins up to date!
-website: https://github.com/tpguy825/autoupdateapi
+website: https://github.com/tpguy825/AutoPluginUpdater

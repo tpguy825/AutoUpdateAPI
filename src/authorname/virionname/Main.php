@@ -1,16 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace tpguy825\AutoUpdateAPI;
+namespace tpguy825\AutoPluginUpdater;
 
 use pocketmine\plugin\PluginBase;
 use Exception;
-use tpguy825\AutoUpdateAPI\tasks\UpdateCheckerTask;
+use tpguy825\AutoPluginUpdater\tasks\UpdateCheckerTask;
 
 final class Main extends PluginBase{
 
     private $instance = null;
     public $version = "0.1.0";
+    private $toUpdate = [];
 
     public function checkUpdate() {
 		//if ($this->config->isCheckUpdate()) {
@@ -32,6 +33,12 @@ final class Main extends PluginBase{
 
     public function onUpdateCheckComplete(?array $data): void {
         if ($data !== null) {
+            if($data["tag_name"] !== $this->version){
+                $this->getLogger()->info("New version available: ".$data["tag_name"]);
+                $this->getLogger()->info("Download link: ".$data["html_url"]);
+                $this->getLogger()->info("To auto-update, run /autoupdate");
+                array_push($this->toUpdate, $data);
+            }
             $this->getLogger()->info("New version available: " . $data["tag_name"]);
             $this->getLogger()->info("Download link: " . $data["html_url"]);
         } else {

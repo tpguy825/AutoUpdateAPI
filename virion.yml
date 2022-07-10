@@ -1,6 +1,6 @@
 ---
-name: AutoUpdateAPI
-antigen: tpguy825\AutoUpdateAPI
+name: AutoPluginUpdater
+antigen: tpguy825\AutoPluginUpdater
 version: 0.1.0
 api: 4.0.0
 author: tpguy825

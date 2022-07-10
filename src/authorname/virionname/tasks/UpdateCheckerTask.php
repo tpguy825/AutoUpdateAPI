@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace tpguy825\AutoUpdateAPI\tasks;
+namespace tpguy825\AutoPluginUpdater\tasks;
 
 use Exception;
-use tpguy825\AutoUpdateAPI\Main;
+use tpguy825\AutoPluginUpdater\Main;
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
 use pocketmine\utils\Internet;
@@ -25,7 +25,7 @@ class UpdateCheckerTask extends AsyncTask {
 	 */
 	public function onRun(): void {
 		$this->main = Main::getInstance();
-		$result = Internet::getURL("https://api.github.com/repos/tpguy825/AutoUpdateAPI/releases/latest", 10, ["AutoUpdateAPI by tpguy825 v".$this->main->version.", php ".PHP_VERSION]);
+		$result = Internet::getURL("https://api.github.com/repos/tpguy825/AutoPluginUpdater/releases/latest", 10, ["AutoPluginUpdater by tpguy825 v".$this->main->version.", php ".PHP_VERSION]);
 		if ($result->getCode() !== 200) {
 			throw new Exception("Could not check for updates: Received HTTP code " . $result->getCode());
 		}
