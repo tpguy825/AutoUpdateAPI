@@ -2,10 +2,10 @@
 name: AutoPluginUpdater
 main: tpguy825\AutoPluginUpdater\Main
 src-namespace-prefix: tpguy825\AutoPluginUpdater
-version: 1.2.0
-api: 4.0.0
+version: 0.0.1
+api: 4.6.1
 
 load: POSTWORLD
 author: tpguy825
-description: API to help automatically keep your plugins up to date!
+description: Plugin to help automatically keep your plugins up to date!
 website: https://github.com/tpguy825/AutoPluginUpdater
