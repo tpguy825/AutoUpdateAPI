@@ -1,8 +1,0 @@
----
-name: AutoPluginUpdater
-antigen: tpguy825\AutoPluginUpdater
-version: 0.1.0
-api: 4.0.0
-author: tpguy825
-description: API to help automatically keep your plugins up to date!
-...
