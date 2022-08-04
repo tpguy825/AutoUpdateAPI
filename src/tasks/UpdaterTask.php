@@ -20,12 +20,14 @@ class UpdaterTask extends AsyncTask {
 	 */
 	public function onRun(): void {
 		$this->main = Main::$instance;
+		/** @var array<string[]> $downloads Array of plugins to download and their versions */
 		$downloads = $this->main->downloads;
 		for($x = 0; $x <= count($downloads); $x++) {
 			$result = Internet::getURL("https://poggit.pmmp.io/get/".$downloads[$x]["name"], 10, ["User-Agent: AutoPluginUpdater by tpguy825 v".$this->main->version.", php ".PHP_VERSION]);
 			if($result instanceof InternetRequestResult) {
 				if ($result->getCode() !== 200) {
 					$this->main->getLogger()->warning("Could not download ".$downloads[$x]["name"].": ".$result->getCode());
+					continue;
 				}
 				try {
 					file_put_contents($this->main->getDataFolder()."/../../plugins/".$downloads[$x]["name"].".phar", $result->getBody());
@@ -44,19 +46,20 @@ class UpdaterTask extends AsyncTask {
 						}
 						$pluginyml = yaml_parse($pluginyml);
 						/**
-						 * @var array<string> $pluginyml 
+						 * @var string[] $pluginyml 
 						 * @var string $pluginversion
 						*/
 						$pluginversion = $pluginyml["version"];
 						if ($pluginversion > $downloads[$x]["version"]) {
 							$this->main->getLogger()->warning("Plugin ".$downloads[$x]["name"]." is outdated! (".$pluginversion." > ".$downloads[$x]["version"].") Updating...");
 						} else {
-							$this->main->getLogger()->info("Plugin ".$downloads[$x]["name"]." is up to date!");
+							$this->main->getLogger()->debug("Plugin ".$downloads[$x]["name"]." is up to date!");
 						}
 					} catch (Exception $e) {
 						$this->main->getLogger()->warning("Could not parse plugin.yml for ".$downloads[$x]["name"].": ".$e->getMessage());
 						$pluginversion = null;
 					}
+					$this->main->getLogger()->debug("Plugin ".$downloads[$x]["name"]." updated to version ".$pluginversion."!");
 					$downloads[$x] = ["name" => $downloads[$x], "version" => $pluginversion];
 				} catch (Exception $e) {
 					$this->main->getLogger()->warning("Could not write ".$downloads[$x]["name"].": ".$e->getMessage());

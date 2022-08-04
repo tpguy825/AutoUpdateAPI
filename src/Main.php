@@ -8,7 +8,7 @@ use Exception;
 use tpguy825\AutoPluginUpdater\tasks\UpdaterTask;
 
 class Main extends PluginBase {
-    /** @var array<array<string>> $downloads Array of plugins to download */
+    /** @var array<string[]> $downloads Array of plugins to download */
     public array $downloads = [];
     public string $version = "0.0.1";
     public static Main $instance;
