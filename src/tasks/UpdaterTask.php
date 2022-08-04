@@ -63,7 +63,7 @@ class UpdaterTask extends AsyncTask {
 					$downloads[$x] = ["name" => $downloads[$x], "error" => $e->getMessage()];
 				}
 			} else {
-				$this->main->getLogger()->warning("Could not download ".$downloads[$x]["name"].": Internet::getURL returned null and not InternetRequestResult");
+				$this->main->getLogger()->warning("Could not download ".$downloads[$x]["name"].": Internet::getURL() returned null and not InternetRequestResult");
 				$downloads[$x] = ["name" => $downloads[$x], "error" => "result is null"];
 			}
 		}
