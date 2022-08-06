@@ -11,17 +11,20 @@ class Main extends PluginBase {
     /** @var array<string[]> $downloads Array of plugins to download */
     public array $downloads = [];
     public string $version = "0.0.1";
-    public static Main $instance;
+    public Main $instance;
+
+    public function onLoad(): void {
+        $this->instance = $this;
+    }
 
     public function onEnable(): void {
-        self::$instance = $this;
 		//if ($this->config->isCheckUpdate()) {
             $plugins = $this->getServer()->getPluginManager()->getPlugins();
-            for($x = 0; $x <= count($plugins); $x++) {
-                array_push($this->downloads, ["name" => $plugins[$x]->getName(), "version" => $plugins[$x]->getDescription()->getVersion()]);
+            foreach($plugins as $plugin) {
+                array_push($this->downloads, ["name" => $plugin->getName(), "version" => $plugin->getDescription()->getVersion()]);
             }
 			try {
-				$this->getServer()->getAsyncPool()->submitTask(new UpdaterTask);
+				$this->getScheduler()->scheduleTask(new UpdaterTask($this));
                 $this->getLogger()->info("Checking for updates...");
 			} catch (Exception $e) {
 				$this->getLogger()->warning("Unable to start AutoPluginUpdater task: ".$e->getMessage());
