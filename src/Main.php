@@ -18,7 +18,7 @@ class Main extends PluginBase {
 		//if ($this->config->isCheckUpdate()) {
             $plugins = $this->getServer()->getPluginManager()->getPlugins();
             for($x = 0; $x <= count($plugins); $x++) {
-                $this->downloads[$x] = ["name" => $plugins[$x]->getName(), "version" => $plugins[$x]->getDescription()->getVersion()];
+                array_push($this->downloads, ["name" => $plugins[$x]->getName(), "version" => $plugins[$x]->getDescription()->getVersion()]);
             }
 			try {
 				$this->getServer()->getAsyncPool()->submitTask(new UpdaterTask);
