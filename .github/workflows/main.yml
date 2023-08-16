@@ -32,6 +32,10 @@ jobs:
           key: "php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.json') }}"
           restore-keys: "php-${{ matrix.php }}-composer-"
 
+      - name: Check php.ini
+        working-directory: ./phpstan
+        run: php --ini
+
       - name: Install PHPStan Composer dependencies
         working-directory: ./phpstan
         run: composer install --prefer-dist --no-interaction
