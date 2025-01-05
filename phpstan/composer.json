@@ -1,9 +1,9 @@
 {
    "name": "pocketmine/phpstan-plugin-config",
    "require": {
-      "phpstan/phpstan": "1.10.35",
+      "phpstan/phpstan": "2.1.1",
       "pocketmine/pocketmine-mp": "5.5.0",
-      "phpstan/phpstan-strict-rules": "^1.0",
+      "phpstan/phpstan-strict-rules": "^2.0",
       "phpstan/extension-installer": "^1.0"
    },
    "autoload": {
